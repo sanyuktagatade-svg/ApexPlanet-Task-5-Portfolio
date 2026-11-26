@@ -6,6 +6,7 @@
   <meta name="description" content="Sanyukta Gatade - Computer Science Engineering Student Portfolio">
   <title>Sanyukta Gatade | Portfolio</title>
   <link rel="stylesheet" href="style.css">
+
   <style>
     .resume-btn {
       display: inline-block;
@@ -17,7 +18,11 @@
       border-radius: 8px;
       font-weight: bold;
     }
-    .resume-btn:hover { background: #1d4ed8; }
+
+    .resume-btn:hover {
+      background: #1d4ed8;
+    }
+
     .status {
       display: inline-block;
       padding: 5px 10px;
@@ -26,22 +31,68 @@
       color: #92400e;
       font-size: 13px;
     }
-    .project-card {
+
+    .project-card,
+    .certificate-card {
       padding: 20px;
       margin: 15px 0;
       border: 1px solid #ddd;
       border-radius: 12px;
     }
+
+    .certificate-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .certificate-card {
+      flex: 1 1 250px;
+    }
+
+    .certificate-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      margin-top: 10px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .certificate-btn:hover {
+      background: #1d4ed8;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    nav a {
+      margin: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .certificate-container {
+        flex-direction: column;
+      }
+
+      .certificate-card {
+        width: auto;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<header>
+<header id="home">
   <h1>Sanyukta Raju Gatade</h1>
   <p>Computer Science Engineering Student | Aspiring Software Developer</p>
+
   <a class="resume-btn"
-     href="https://github.com/sanyuktagatade-svg/ApexPlanet-Task-5-Portfolio/raw/refs/heads/main/Sanyukta_Gatade_Resume.pdf"
-     target="_blank" download>
+     href="Sanyukta_Gatade_Resume.pdf"
+     target="_blank">
      Download Resume
   </a>
 </header>
@@ -53,21 +104,21 @@
   <a href="#projects">Projects</a>
   <a href="#education">Education</a>
   <a href="#experience">Experience</a>
+  <a href="#certificates">Certificates</a>
   <a href="#contact">Contact</a>
 </nav>
 
-<section id="home">
-  <h2>Welcome to My Portfolio</h2>
-  <p>Hello! I'm Sanyukta, a final-year Computer Science Engineering student
-  interested in software development, data science and artificial intelligence.</p>
-</section>
-
 <section id="about">
   <h2>About Me</h2>
-  <p>I am a passionate Computer Science Engineering student at
-  Government Engineering College, Haveri. I enjoy learning new technologies,
-  solving problems and developing practical projects.</p>
-  <p>My goal is to build a successful career in software development and AI.</p>
+  <p>
+    I am a passionate Computer Science Engineering student at
+    Government Engineering College, Haveri. I enjoy learning new
+    technologies, solving problems and developing practical projects.
+  </p>
+  <p>
+    My goal is to build a successful career in software development
+    and Artificial Intelligence.
+  </p>
 </section>
 
 <section id="skills">
@@ -90,24 +141,34 @@
   <div class="project-card">
     <h3>Zomato Restaurant Data Analysis</h3>
     <span class="status">In Progress</span>
-    <p>Analyzing restaurant ratings, customer reviews and sentiment
-    using Python and data visualization techniques.</p>
-    <p><b>Technologies:</b> Python, Pandas, NumPy, Matplotlib,
-    Seaborn and TextBlob.</p>
+    <p>
+      Analyzing restaurant ratings, customer reviews and sentiment
+      using Python and data visualization techniques.
+    </p>
+    <p>
+      <b>Technologies:</b> Python, Pandas, NumPy, Matplotlib,
+      Seaborn and TextBlob.
+    </p>
   </div>
 
   <div class="project-card">
     <h3>AURORA – Multi AI Agent Smart City Simulation</h3>
     <span class="status">In Progress</span>
-    <p>Developing a multi-agent simulation platform for smart city
-    management, monitoring and urban service analysis.</p>
-    <p><b>Technologies:</b> AI, Multi-Agent Systems, JavaScript,
-    Node.js and MySQL.</p>
+    <p>
+      Developing a multi-agent simulation platform for smart city
+      management, monitoring and urban service analysis.
+    </p>
+    <p>
+      <b>Technologies:</b> AI, Multi-Agent Systems, JavaScript,
+      Node.js and MySQL.
+    </p>
   </div>
 
   <div class="project-card">
     <h3>Megatron – Desktop Assistant</h3>
-    <p>A mini project focused on developing a desktop assistant.</p>
+    <p>
+      A mini project focused on developing a desktop assistant.
+    </p>
   </div>
 
 </section>
@@ -120,6 +181,7 @@
 
 <section id="experience">
   <h2>Internship Experience</h2>
+
   <h3>InAmigos Foundation</h3>
   <p>AI and Machine Learning Internship – Completed</p>
 
@@ -127,16 +189,58 @@
   <p>Web Development Internship – Task 5 Portfolio</p>
 </section>
 
+<!-- CERTIFICATES SECTION -->
+
+<section id="certificates">
+  <h2>My Certificates</h2>
+  <p>Certificates earned through my learning and internship journey.</p>
+
+  <div class="certificate-container">
+
+    <div class="certificate-card">
+      <h3>AI and Machine Learning Internship</h3>
+      <p>InAmigos Foundation</p>
+      <p>Internship Completion Certificate</p>
+
+      <a class="certificate-btn"
+         href="InAmigos_AI_ML_Certificate.pdf"
+         target="_blank">
+         View Certificate
+      </a>
+    </div>
+
+    <div class="certificate-card">
+      <h3>Certificate of Appreciation</h3>
+      <p>InAmigos Foundation</p>
+      <p>Recognition for internship participation</p>
+
+      <a class="certificate-btn"
+         href="InAmigos_Appreciation_Certificate.pdf"
+         target="_blank">
+         View Certificate
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <section id="contact">
   <h2>Contact Me</h2>
+
   <p>Email: Add your professional email address</p>
+
   <p>
     <a href="https://www.linkedin.com/in/sanyukta-raju-gatade-0a5b382b7/"
-       target="_blank">LinkedIn Profile</a>
+       target="_blank">
+       LinkedIn Profile
+    </a>
   </p>
+
   <p>
     <a href="https://github.com/sanyuktagatade-svg"
-       target="_blank">GitHub Profile</a>
+       target="_blank">
+       GitHub Profile
+    </a>
   </p>
 </section>
 
