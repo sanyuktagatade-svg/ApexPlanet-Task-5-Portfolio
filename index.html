@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Portfolio of a Computer Science Engineering student">
+
+<meta name="description" content="Sanyukta Gatade - Computer Science Engineering Student Portfolio">
+
 <title>Sanyukta Gatade | Portfolio</title>
 
 <style>
@@ -14,22 +16,24 @@
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background: #0b1120;
-    color: #e5e7eb;
-    line-height: 1.7;
-}
-
 :root {
     --purple: #a78bfa;
     --cyan: #22d3ee;
+    --background: #0b1120;
     --card: #151f33;
+    --text: #e5e7eb;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.7;
 }
 
 header {
     background: #111a2e;
-    padding: 18px 8%;
+    padding: 16px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,28 +46,32 @@ header {
 
 .logo {
     color: var(--purple);
-    font-size: 22px;
+    font-size: 23px;
     font-weight: bold;
 }
 
 nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 15px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-size: 14px;
+    transition: 0.3s;
 }
 
-nav a:hover {
+nav a:hover,
+nav a.active {
     color: var(--cyan);
+    font-weight: bold;
 }
 
 section {
-    padding: 75px 9%;
+    padding: 70px 9%;
+    scroll-margin-top: 80px;
 }
 
 h2 {
@@ -94,7 +102,6 @@ h2 {
 
 .hero h1 {
     font-size: 40px;
-    color: white;
 }
 
 .hero h1 span {
@@ -104,7 +111,6 @@ h2 {
 .hero p {
     max-width: 650px;
     margin: 15px auto;
-    color: #cbd5e1;
 }
 
 .btn {
@@ -116,10 +122,12 @@ h2 {
     color: #0b1120;
     background: var(--cyan);
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .btn:hover {
     background: var(--purple);
+    transform: translateY(-3px);
 }
 
 .outline-btn {
@@ -169,17 +177,15 @@ h2 {
     margin: 8px 0;
 }
 
-.card a, .certificate-link {
+.card a,
+.certificate-link {
     color: var(--cyan);
     text-decoration: none;
 }
 
-.card a:hover, .certificate-link:hover {
+.card a:hover,
+.certificate-link:hover {
     text-decoration: underline;
-}
-
-ul {
-    padding-left: 20px;
 }
 
 .gallery {
@@ -220,6 +226,37 @@ footer {
     color: #94a3b8;
 }
 
+#backToTop {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: var(--purple);
+    color: #0b1120;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+    z-index: 99;
+}
+
+#backToTop.show {
+    display: block;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media(max-width: 600px) {
     header {
         justify-content: center;
@@ -238,6 +275,18 @@ footer {
         padding: 55px 6%;
     }
 }
+
+@media(prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
 </style>
 </head>
 
@@ -245,6 +294,7 @@ footer {
 
 <header>
     <div class="logo">Sanyukta.</div>
+
     <nav>
         <a href="#home">Home</a>
         <a href="#about">About</a>
@@ -253,39 +303,53 @@ footer {
         <a href="#education">Education</a>
         <a href="#experience">Experience</a>
         <a href="#certificates">Certificates</a>
+        <a href="#screenshots">Gallery</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
 <!-- HOME -->
 <section class="hero" id="home">
-    <img src="profile.jpg" alt="My Profile Photo" class="profile-pic">
+
+    <img src="profile.jpg"
+         alt="Profile photo"
+         class="profile-pic">
 
     <h1>Hello, I'm <span>Sanyukta Gatade</span></h1>
 
     <p>
         Final-Year Computer Science Engineering Student |
-        Aspiring Software Developer | AI & Data Science Enthusiast
+        Aspiring Software Developer |
+        AI & Data Science Enthusiast
     </p>
 
-    <a class="btn" href="Sanyukta_Gatade_Resume.pdf"
-       target="_blank">Download Resume</a>
+    <a class="btn"
+       href="Sanyukta_Gatade_Resume.pdf"
+       target="_blank">
+       Download Resume
+    </a>
 
-    <a class="btn outline-btn" href="#projects">Explore Projects</a>
+    <a class="btn outline-btn" href="#projects">
+       Explore Projects
+    </a>
+
 </section>
 
 <!-- ABOUT -->
 <section id="about">
+
     <h2>About Me</h2>
 
     <div class="card">
         <p>
-            I am a final-year Computer Science Engineering student
-            at Government Engineering College, Haveri.
-            I am interested in software development, artificial
-            intelligence and data analysis.
+            I am a final-year Computer Science Engineering
+            student at Government Engineering College, Haveri.
+            I am interested in software development,
+            artificial intelligence and data analysis.
         </p>
+
         <br>
+
         <p>
             I enjoy learning new technologies, solving problems
             and building practical projects. My goal is to grow
@@ -293,13 +357,16 @@ footer {
             technology solutions.
         </p>
     </div>
+
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
+
     <h2>My Skills</h2>
 
     <div class="card-container">
+
         <div class="card">
             <h3>Programming</h3>
             <span class="tag">Python</span>
@@ -328,11 +395,14 @@ footer {
             <span class="tag">Data Analysis</span>
             <span class="tag">GitHub</span>
         </div>
+
     </div>
+
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
+
     <h2>My Projects</h2>
 
     <div class="card-container">
@@ -340,31 +410,43 @@ footer {
         <div class="card">
             <h3>Zomato Restaurant Data Analysis</h3>
             <span class="status">● In Progress</span>
+
             <p>
                 Analyzing restaurant ratings, customer reviews,
                 restaurant trends and customer sentiment using
                 data analysis and visualization.
             </p>
-            <p><b>Technologies:</b> Python, Pandas, NumPy,
-            Matplotlib, Seaborn, TextBlob.</p>
+
+            <p>
+                <b>Technologies:</b> Python, Pandas, NumPy,
+                Matplotlib, Seaborn, TextBlob.
+            </p>
         </div>
 
         <div class="card">
             <h3>AURORA – Smart City Simulation</h3>
             <span class="status">● In Progress</span>
+
             <p>
                 Developing a Multi AI Agent Simulation Platform
                 for smart city management, monitoring and
                 urban service analysis.
             </p>
-            <p><b>Technologies:</b> AI, Multi-Agent Systems,
-            JavaScript, Node.js, MySQL.</p>
+
+            <p>
+                <b>Technologies:</b> AI, Multi-Agent Systems,
+                JavaScript, Node.js, MySQL.
+            </p>
+
             <a href="https://github.com/sanyuktagatade-svg/AURORA-Smart-City-Simulation"
-               target="_blank">View GitHub Project →</a>
+               target="_blank">
+               View GitHub Project →
+            </a>
         </div>
 
         <div class="card">
             <h3>Megatron – Desktop Assistant</h3>
+
             <p>
                 A mini project focused on developing a desktop
                 assistant to perform useful tasks.
@@ -372,10 +454,12 @@ footer {
         </div>
 
     </div>
+
 </section>
 
 <!-- EDUCATION -->
 <section id="education">
+
     <h2>Education</h2>
 
     <div class="card">
@@ -384,10 +468,12 @@ footer {
         <p>Computer Science and Engineering</p>
         <p>Final Year Student</p>
     </div>
+
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience">
+
     <h2>Internship Experience</h2>
 
     <div class="card-container">
@@ -396,6 +482,7 @@ footer {
             <h3>InAmigos Foundation</h3>
             <p>AI and Machine Learning Internship</p>
             <span class="tag">Completed</span>
+
             <p>
                 Learned AI and ML concepts and completed
                 practical internship tasks.
@@ -406,6 +493,7 @@ footer {
             <h3>ApexPlanet Software Pvt. Ltd.</h3>
             <p>Web Development Portfolio Task</p>
             <span class="tag">Portfolio Project</span>
+
             <p>
                 Created and deployed a personal portfolio
                 website using HTML, CSS and GitHub Pages.
@@ -413,10 +501,12 @@ footer {
         </div>
 
     </div>
+
 </section>
 
 <!-- CERTIFICATES -->
 <section id="certificates">
+
     <h2>Certificates & Achievements</h2>
 
     <div class="card-container">
@@ -424,75 +514,98 @@ footer {
         <div class="card">
             <h3>AI & ML Internship Certificate</h3>
             <p>InAmigos Foundation</p>
+
             <a class="certificate-link"
                href="InAmigos_AI_ML_Certificate.pdf"
-               target="_blank">View Certificate →</a>
+               target="_blank">
+               View Certificate →
+            </a>
         </div>
 
         <div class="card">
             <h3>Certificate of Appreciation</h3>
             <p>InAmigos Foundation</p>
+
             <a class="certificate-link"
                href="InAmigos_Appreciation_Certificate.pdf"
-               target="_blank">View Appreciation Certificate →</a>
+               target="_blank">
+               View Appreciation Certificate →
+            </a>
         </div>
 
     </div>
+
 </section>
 
-<!-- PORTFOLIO SCREENSHOTS -->
+<!-- SCREENSHOTS -->
 <section id="screenshots">
+
     <h2>Portfolio Preview</h2>
 
     <div class="gallery">
 
         <div class="gallery-item">
-            <img src="home.png" alt="Portfolio Home Screenshot">
+            <img src="home.png" alt="Home page screenshot" loading="lazy">
             <p>Home Page</p>
         </div>
 
         <div class="gallery-item">
-            <img src="about.png" alt="About Section Screenshot">
+            <img src="about.png" alt="About section screenshot" loading="lazy">
             <p>About Me</p>
         </div>
 
         <div class="gallery-item">
-            <img src="skills.png" alt="Skills Screenshot">
+            <img src="skills.png" alt="Skills screenshot" loading="lazy">
             <p>My Skills</p>
         </div>
 
         <div class="gallery-item">
-            <img src="projects.png" alt="Projects Screenshot">
+            <img src="projects.png" alt="Projects screenshot" loading="lazy">
             <p>My Projects</p>
         </div>
 
         <div class="gallery-item">
-            <img src="certificates.png" alt="Certificates Screenshot">
+            <img src="certificates.png" alt="Certificates screenshot" loading="lazy">
             <p>Certificates</p>
         </div>
 
     </div>
+
 </section>
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
+
     <h2>Let's Connect</h2>
 
     <p>Thank you for visiting my portfolio!</p>
 
     <a class="btn"
        href="https://www.linkedin.com/in/sanyukta-raju-gatade-0a5b382b7/"
-       target="_blank">LinkedIn</a>
+       target="_blank">
+       LinkedIn
+    </a>
 
     <a class="btn outline-btn"
        href="https://github.com/sanyuktagatade-svg"
-       target="_blank">GitHub</a>
+       target="_blank">
+       GitHub
+    </a>
+
 </section>
 
 <footer>
-    <p>© 2026 Sanyukta Gatade | Personal Portfolio</p>
-    <p>Designed with HTML, CSS and creativity.</p>
+    <p>
+        © <span id="year"></span>
+        Sanyukta Gatade | All Rights Reserved
+    </p>
+
+    <p>Designed with HTML, CSS and JavaScript.</p>
 </footer>
+
+<button id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
 
 </body>
 </html>
