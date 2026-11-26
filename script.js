@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    // 1. Automatic footer year
+    // 1. Automatically update footer year
     const yearElement = document.getElementById("year");
 
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
 
-    // 2. Active navigation highlighting
+    // 2. Highlight active navigation link
     const navLinks = document.querySelectorAll("nav a");
     const sections = document.querySelectorAll("section[id]");
 
@@ -28,11 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 3. Back to top button
+    // 3. Back-to-top button
     const backToTop = document.getElementById("backToTop");
 
-    window.addEventListener("scroll", function () {
-
+    function handleScroll() {
         updateActiveLink();
 
         if (backToTop) {
@@ -41,8 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.scrollY > 300
             );
         }
+    }
 
-    });
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
 
     if (backToTop) {
         backToTop.addEventListener("click", function () {
@@ -53,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 4. Scroll reveal animation
+    // 4. Scroll reveal animations
     const revealElements = document.querySelectorAll(
         "section:not(.hero) .card, section:not(.hero) h2, .gallery-item"
     );
@@ -64,20 +65,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if ("IntersectionObserver" in window) {
 
-        const observer = new IntersectionObserver(function (entries) {
+        const observer = new IntersectionObserver(
+            function (entries) {
 
-            entries.forEach(function (entry) {
+                entries.forEach(function (entry) {
 
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
-                }
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        observer.unobserve(entry.target);
+                    }
 
-            });
+                });
 
-        }, {
-            threshold: 0.12
-        });
+            },
+            { threshold: 0.12 }
+        );
 
         revealElements.forEach(function (element) {
             observer.observe(element);
