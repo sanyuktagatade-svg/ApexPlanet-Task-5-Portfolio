@@ -1,94 +1,112 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Automatically update footer year
-    const yearElement = document.getElementById("year");
+  // 1. Automatically update copyright year
+  const yearElement = document.getElementById("year");
 
-    if (yearElement) {
-        yearElement.textContent = new Date().getFullYear();
-    }
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
 
-    // 2. Highlight active navigation link
-    const navLinks = document.querySelectorAll("nav a");
-    const sections = document.querySelectorAll("section[id]");
+  // 2. Navigation active link highlighting
+  const navLinks = document.querySelectorAll(".nav-links a");
+  const sections = document.querySelectorAll("main section[id]");
 
-    function updateActiveLink() {
-        let currentSection = "home";
+  function updateActiveLink() {
+    let currentSection = "home";
 
-        sections.forEach(function (section) {
-            if (window.scrollY >= section.offsetTop - 160) {
-                currentSection = section.id;
-            }
-        });
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop - 140;
 
-        navLinks.forEach(function (link) {
-            link.classList.toggle(
-                "active",
-                link.getAttribute("href") === "#" + currentSection
-            );
-        });
-    }
-
-    // 3. Back-to-top button
-    const backToTop = document.getElementById("backToTop");
-
-    function handleScroll() {
-        updateActiveLink();
-
-        if (backToTop) {
-            backToTop.classList.toggle(
-                "show",
-                window.scrollY > 300
-            );
-        }
-    }
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    if (backToTop) {
-        backToTop.addEventListener("click", function () {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-    }
-
-    // 4. Scroll reveal animations
-    const revealElements = document.querySelectorAll(
-        "section:not(.hero) .card, section:not(.hero) h2, .gallery-item"
-    );
-
-    revealElements.forEach(function (element) {
-        element.classList.add("reveal");
+      if (window.scrollY >= sectionTop) {
+        currentSection = section.id;
+      }
     });
 
-    if ("IntersectionObserver" in window) {
+    navLinks.forEach((link) => {
+      link.classList.toggle(
+        "active",
+        link.getAttribute("href") === `#${currentSection}`
+      );
+    });
+  }
 
-        const observer = new IntersectionObserver(
-            function (entries) {
+  window.addEventListener("scroll", updateActiveLink);
+  updateActiveLink();
 
-                entries.forEach(function (entry) {
+  // 3. Smooth scrolling
+  navLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const targetId = link.getAttribute("href");
 
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
-                    }
+      if (!targetId || !targetId.startsWith("#")) {
+        return;
+      }
 
-                });
+      const target = document.querySelector(targetId);
 
-            },
-            { threshold: 0.12 }
-        );
+      if (target) {
+        event.preventDefault();
 
-        revealElements.forEach(function (element) {
-            observer.observe(element);
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  });
+
+  // 4. Back to top button
+  const backToTop = document.getElementById("backToTop");
+
+  if (backToTop) {
+    window.addEventListener("scroll", () => {
+      backToTop.classList.toggle(
+        "show",
+        window.scrollY > 350
+      );
+    });
+
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  // 5. Scroll reveal animation
+  const revealElements = document.querySelectorAll(".reveal");
+
+  if ("IntersectionObserver" in window) {
+
+    const observer = new IntersectionObserver(
+      (entries, observerInstance) => {
+
+        entries.forEach((entry) => {
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observerInstance.unobserve(entry.target);
+          }
+
         });
 
-    } else {
-        revealElements.forEach(function (element) {
-            element.classList.add("visible");
-        });
-    }
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+
+  } else {
+
+    revealElements.forEach((element) => {
+      element.classList.add("visible");
+    });
+
+  }
 
 });
