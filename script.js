@@ -1,13 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. Automatically update copyright year
+  // Automatically update footer year
   const yearElement = document.getElementById("year");
 
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
 
-  // 2. Navigation active link highlighting
+  // Navigation active link
   const navLinks = document.querySelectorAll(".nav-links a");
   const sections = document.querySelectorAll("main section[id]");
 
@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentSection = "home";
 
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 140;
-
-      if (window.scrollY >= sectionTop) {
+      if (window.scrollY >= section.offsetTop - 140) {
         currentSection = section.id;
       }
     });
@@ -33,14 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateActiveLink);
   updateActiveLink();
 
-  // 3. Smooth scrolling
+  // Smooth navigation scrolling
   navLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       const targetId = link.getAttribute("href");
 
-      if (!targetId || !targetId.startsWith("#")) {
-        return;
-      }
+      if (!targetId || !targetId.startsWith("#")) return;
 
       const target = document.querySelector(targetId);
 
@@ -55,15 +51,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 4. Back to top button
+  // Back to top button
   const backToTop = document.getElementById("backToTop");
 
   if (backToTop) {
     window.addEventListener("scroll", () => {
-      backToTop.classList.toggle(
-        "show",
-        window.scrollY > 350
-      );
+      backToTop.classList.toggle("show", window.scrollY > 350);
     });
 
     backToTop.addEventListener("click", () => {
@@ -74,27 +67,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 5. Scroll reveal animation
+  // Scroll reveal animations
   const revealElements = document.querySelectorAll(".reveal");
 
   if ("IntersectionObserver" in window) {
-
     const observer = new IntersectionObserver(
       (entries, observerInstance) => {
-
         entries.forEach((entry) => {
-
           if (entry.isIntersecting) {
             entry.target.classList.add("visible");
             observerInstance.unobserve(entry.target);
           }
-
         });
-
       },
-      {
-        threshold: 0.12
-      }
+      { threshold: 0.12 }
     );
 
     revealElements.forEach((element) => {
@@ -102,11 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
   } else {
-
     revealElements.forEach((element) => {
       element.classList.add("visible");
     });
-
   }
 
 });
